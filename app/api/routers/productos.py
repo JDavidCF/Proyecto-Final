@@ -19,3 +19,11 @@ def crear_producto():
 @router.get("/{producto_id}")
 def consultar_producto(producto_id: int):
     return {"mensaje": "Consultar producto"}
+
+@router.get("/categoria/{categoria}")
+def consultar_por_categoria(categoria: str):
+    return {
+        "mensaje": "Productos consultados por categoria",
+        "categoria": categoria,
+        "productos": []
+    }
