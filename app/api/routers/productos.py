@@ -26,4 +26,11 @@ def consultar_producto(codigo: str):
     return {
         "mensaje": "Producto consultado correctamente",
         "codigo": codigo
+
+@router.get("/categoria/{categoria}")
+def consultar_por_categoria(categoria: str):
+    return {
+        "mensaje": "Productos consultados por categoria",
+        "categoria": categoria,
+        "productos": []
     }
