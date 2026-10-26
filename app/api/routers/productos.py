@@ -129,3 +129,22 @@ def eliminar_producto(
         "mensaje": "Producto eliminado correctamente",
         "producto_id": producto_id
     }
+=======
+@router.get("/{producto_id}")
+def consultar_producto(producto_id: int):
+    return {"mensaje": "Consultar producto"}
+
+
+@router.get("/{codigo}")
+def consultar_producto(codigo: str):
+    return {
+        "mensaje": "Producto consultado correctamente",
+        "codigo": codigo
+
+@router.get("/categoria/{categoria}")
+def consultar_por_categoria(categoria: str):
+    return {
+        "mensaje": "Productos consultados por categoria",
+        "categoria": categoria,
+        "productos": []
+    }
