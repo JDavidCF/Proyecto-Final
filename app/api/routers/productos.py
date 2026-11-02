@@ -33,24 +33,12 @@ def crear_producto(
         )
 
     nuevo_producto = Producto(**datos.model_dump())
+
     db.add(nuevo_producto)
     db.commit()
     db.refresh(nuevo_producto)
 
     return nuevo_producto
-
-
-@router.get(
-    "/categoria/{categoria}",
-    response_model=list[ProductoRespuesta]
-)
-def consultar_por_categoria(
-    categoria: str,
-    db: Session = Depends(get_db)
-):
-    return db.query(Producto).filter(
-        Producto.categoria.ilike(categoria)
-    ).all()
 
 
 @router.get("/{producto_id}", response_model=ProductoRespuesta)
@@ -128,23 +116,4 @@ def eliminar_producto(
     return {
         "mensaje": "Producto eliminado correctamente",
         "producto_id": producto_id
-    }
-=======
-@router.get("/{producto_id}")
-def consultar_producto(producto_id: int):
-    return {"mensaje": "Consultar producto"}
-
-
-@router.get("/{codigo}")
-def consultar_producto(codigo: str):
-    return {
-        "mensaje": "Producto consultado correctamente",
-        "codigo": codigo
-
-@router.get("/categoria/{categoria}")
-def consultar_por_categoria(categoria: str):
-    return {
-        "mensaje": "Productos consultados por categoria",
-        "categoria": categoria,
-        "productos": []
     }
