@@ -8,14 +8,15 @@ load_dotenv()
 
 database_url = URL.create(
     drivername="postgresql+psycopg",
-    username=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    host=os.getenv("DB_HOST", "localhost"),
-    port=int(os.getenv("DB_PORT", "5432")),
-    database=os.getenv("DB_NAME")
+    username=os.getenv("user"),
+    password=os.getenv("password"),
+    host=os.getenv("host"),
+    port=int(os.getenv("port", "5432")),
+    database=os.getenv("dbname"),
+    query={"sslmode": "require"}
 )
 
-engine = create_engine(database_url, echo=True)
+engine = create_engine(database_url)
 
 SessionLocal = sessionmaker(
     bind=engine,
