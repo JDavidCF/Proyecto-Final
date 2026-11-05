@@ -40,4 +40,4 @@ class Usuario(Base):
         Boolean,
         default=True,
         nullable=False
-    )
+      
