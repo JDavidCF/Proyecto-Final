@@ -1,10 +1,13 @@
-
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.database.connection import get_db
 from app.models.producto import Producto
 from app.schemas.producto import ProductoCrear, ProductoRespuesta
+
+from app.models.usuario import Usuario
+from app.core.dependencies import requerir_roles
+
 
 router = APIRouter(
     prefix="/productos",
@@ -13,14 +16,21 @@ router = APIRouter(
 
 
 @router.get("/", response_model=list[ProductoRespuesta])
-def mostrar_productos(db: Session = Depends(get_db)):
+def mostrar_productos(
+    db: Session = Depends(get_db)
+):
     return db.query(Producto).all()
+
+
 
 
 @router.post("/", response_model=ProductoRespuesta, status_code=201)
 def crear_producto(
     datos: ProductoCrear,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario: Usuario = Depends(
+        requerir_roles("administrador", "empleado")
+    )
 ):
     existente = db.query(Producto).filter(
         Producto.codigo == datos.codigo
@@ -41,6 +51,37 @@ def crear_producto(
     return nuevo_producto
 
 
+
+
+@router.get("/buscar", response_model=list[ProductoRespuesta])
+def buscar_productos(
+    nombre: str | None = None,
+    categoria: str | None = None,
+    disponible: bool | None = None,
+    db: Session = Depends(get_db)
+):
+    consulta = db.query(Producto)
+
+    if nombre:
+        consulta = consulta.filter(
+            Producto.nombre.ilike(f"%{nombre}%")
+        )
+
+    if categoria:
+        consulta = consulta.filter(
+            Producto.categoria.ilike(f"%{categoria}%")
+        )
+
+    if disponible is not None:
+        consulta = consulta.filter(
+            Producto.disponible == disponible
+        )
+
+    return consulta.all()
+
+
+
+
 @router.get("/{producto_id}", response_model=ProductoRespuesta)
 def consultar_producto(
     producto_id: int,
@@ -59,11 +100,15 @@ def consultar_producto(
     return producto
 
 
+
 @router.put("/{producto_id}", response_model=ProductoRespuesta)
 def actualizar_producto(
     producto_id: int,
     datos: ProductoCrear,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario: Usuario = Depends(
+        requerir_roles("administrador", "empleado")
+    )
 ):
     producto = db.query(Producto).filter(
         Producto.id == producto_id
@@ -98,7 +143,10 @@ def actualizar_producto(
 @router.delete("/{producto_id}")
 def eliminar_producto(
     producto_id: int,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    usuario: Usuario = Depends(
+        requerir_roles("administrador", "empleado")
+    )
 ):
     producto = db.query(Producto).filter(
         Producto.id == producto_id

@@ -30,8 +30,14 @@ class Usuario(Base):
         nullable=False
     )
 
+    rol: Mapped[str] = mapped_column(
+        String(20),
+        default="cliente",
+        nullable=False
+    )
+
     activo: Mapped[bool] = mapped_column(
         Boolean,
         default=True,
         nullable=False
-    )
+      
