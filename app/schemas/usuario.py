@@ -1,5 +1,6 @@
 from typing import Literal
 
+
 from pydantic import BaseModel, ConfigDict, Field, EmailStr
 
 
@@ -26,3 +27,5 @@ class UsuarioLogin(BaseModel):
 
 class UsuarioCambiarRol(BaseModel):
     rol: Literal["administrador", "empleado", "cliente"]
+    activo: bool
+    model_config = ConfigDict(from_attributes=True)
