@@ -21,7 +21,7 @@
 
 ## 📋 Sobre el proyecto
 
-**Sistema de Inventario** es un proyecto desarrollado como parte de la formación Técnico en Programación de Software del SENA.
+**Sistema de Inventario** es un proyecto desarrollado como parte de la formación en Programación de Software.
 
 Su propósito es desarrollar una aplicación que permita gestionar y controlar el inventario de productos, facilitando su administración mediante una API conectada a una base de datos.
 
@@ -152,7 +152,7 @@ Repositorio: [JDavidCF/Proyecto-Final](https://github.com/JDavidCF/Proyecto-Fina
 
 ## 👨‍💻 Desarrollado por
 
-Proyecto académico realizado por aprendices del programa **Técnico en Programación de Software – SENA**.
+Proyecto académico realizado por aprendices del programa Programación de Software.
 
 <div align="center">
 
