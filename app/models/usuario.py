@@ -1,5 +1,5 @@
-from sqlalchemy import String, Integer, Boolean
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import String, Integer, Boolean, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.base import Base
 
@@ -32,6 +32,7 @@ class Usuario(Base):
 
     rol: Mapped[str] = mapped_column(
         String(20),
+        ForeignKey("roles.nombre"),
         default="cliente",
         nullable=False
     )
@@ -40,4 +41,9 @@ class Usuario(Base):
         Boolean,
         default=True,
         nullable=False
+    )
+
+    rol_relacion = relationship(
+        "Rol",
+        back_populates="usuarios"
     )

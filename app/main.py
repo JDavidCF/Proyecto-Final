@@ -3,7 +3,8 @@ from app.api.routers import productos, usuarios, ventas, movimientos, estadistic
 
 
 app = FastAPI(
-    title="Sistema de Inventario"
+    title="Sistema de Inventario",
+    description=":)"
 )
 
 app.include_router(productos.router)
