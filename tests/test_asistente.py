@@ -203,3 +203,40 @@ def test_public_assistant_route_is_available_without_login(monkeypatch):
     )
     assert response.status_code == 503
     assert "GEMINI_API_KEY" in response.json()["detail"]
+
+def test_assistant_request_rejects_messages_outside_length_limits():
+    with pytest.raises(ValidationError):
+        AssistantRequest(message="a")
+
+    with pytest.raises(ValidationError):
+        AssistantRequest(message="x" * 1001)
+
+
+def test_extract_model_answer_ignores_non_text_parts():
+    payload = {
+        "candidates": [
+            {
+                "content": {
+                    "parts": [
+                        {"inline_data": "imagen"},
+                        {"text": ""},
+                        {"text": "Respuesta válida."}
+                    ]
+                }
+            }
+        ]
+    }
+
+    assert extract_model_answer(payload) == "Respuesta válida."
+
+
+@pytest.mark.parametrize(
+    "message",
+    [
+        "¿Cómo registro un producto nuevo?",
+        "¿Dónde consulto el stock disponible?",
+        "¿Cómo reviso las estadísticas de ventas?",
+    ],
+)
+def test_normal_inventory_questions_are_not_sensitive(message):
+    assert not contains_sensitive_data(message)
