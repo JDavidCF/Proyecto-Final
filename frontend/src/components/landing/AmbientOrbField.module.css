@@ -1,0 +1,119 @@
+.field {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.orb {
+  position: absolute;
+  top: var(--orb-top);
+  left: var(--orb-left);
+  width: min(var(--orb-size), 78vw);
+  height: min(var(--orb-size), 78vw);
+  border-radius: 50%;
+  background-color: var(--orb-color);
+  filter: blur(58px);
+  opacity: 0.34;
+  mix-blend-mode: hard-light;
+  transform-origin: calc(50% + var(--orbit-radius)) 50%;
+  animation: ambient-orbit var(--orb-duration) linear infinite;
+}
+
+.orb:nth-child(even) {
+  animation-direction: reverse;
+}
+
+.field[data-scene='landing'] .orb:nth-child(1) {
+  --orb-size: 340px;
+  --orb-left: -12%;
+  --orb-top: 6%;
+  --orb-color: rgba(23, 107, 255, 0.82);
+  --orbit-radius: 106px;
+  --orb-duration: 24s;
+}
+
+.field[data-scene='landing'] .orb:nth-child(2) {
+  --orb-size: 260px;
+  --orb-left: 66%;
+  --orb-top: -12%;
+  --orb-color: rgba(0, 217, 255, 0.75);
+  --orbit-radius: 88px;
+  --orb-duration: 31s;
+}
+
+.field[data-scene='landing'] .orb:nth-child(3) {
+  --orb-size: 430px;
+  --orb-left: 30%;
+  --orb-top: 21%;
+  --orb-color: rgba(162, 89, 255, 0.62);
+  --orbit-radius: 142px;
+  --orb-duration: 37s;
+}
+
+.field[data-scene='landing'] .orb:nth-child(4) {
+  --orb-size: 290px;
+  --orb-left: -6%;
+  --orb-top: 68%;
+  --orb-color: rgba(0, 184, 212, 0.7);
+  --orbit-radius: 98px;
+  --orb-duration: 28s;
+}
+
+.field[data-scene='landing'] .orb:nth-child(5) {
+  --orb-size: 360px;
+  --orb-left: 72%;
+  --orb-top: 63%;
+  --orb-color: rgba(59, 130, 246, 0.72);
+  --orbit-radius: 122px;
+  --orb-duration: 34s;
+}
+
+.field[data-scene='dashboard'] .orb:nth-child(1) {
+  --orb-size: 350px;
+  --orb-left: -11%;
+  --orb-top: 5%;
+  --orb-color: rgba(23, 107, 255, 0.82);
+  --orbit-radius: 112px;
+  --orb-duration: 26s;
+}
+
+.field[data-scene='dashboard'] .orb:nth-child(2) {
+  --orb-size: 250px;
+  --orb-left: 64%;
+  --orb-top: 25%;
+  --orb-color: rgba(0, 217, 255, 0.72);
+  --orbit-radius: 82px;
+  --orb-duration: 21s;
+}
+
+.field[data-scene='dashboard'] .orb:nth-child(3) {
+  --orb-size: 410px;
+  --orb-left: 27%;
+  --orb-top: 63%;
+  --orb-color: rgba(139, 92, 246, 0.65);
+  --orbit-radius: 136px;
+  --orb-duration: 33s;
+}
+
+@keyframes ambient-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+html[data-theme='light'] .orb {
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb {
+    animation: none;
+  }
+}

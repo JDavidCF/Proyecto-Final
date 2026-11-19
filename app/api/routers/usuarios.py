@@ -170,6 +170,7 @@ def cambiar_rol(
             )
 
     usuario.rol = datos.rol
+    usuario.activo = datos.activo
 
     db.commit()
     db.refresh(usuario)
