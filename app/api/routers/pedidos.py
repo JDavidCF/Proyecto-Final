@@ -1,4 +1,3 @@
-
 from decimal import Decimal
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -30,12 +29,14 @@ router = APIRouter(
 )
 
 
-# CREAR PEDIDO (SOLO CLIENTES)
+
 @router.post("/", response_model=PedidoRespuesta, status_code=201)
 def crear_pedido(
     datos: PedidoCrear,
     db: Session = Depends(get_db),
-    usuario: Usuario = Depends(requerir_roles("cliente"))
+    usuario: Usuario = Depends(
+    requerir_roles("administrador", "empleado", "cliente")
+)
 ):
     productos_pedido = {}
 
@@ -269,3 +270,22 @@ def rechazar_pedido(
         "mensaje": "Pedido rechazado correctamente",
         "pedido": pedido
     }
+
+
+@router.patch("/{pedido_id}/cancelar")
+def cancelar_pedido(
+    pedido_id: int,
+    db: Session = Depends(get_db),
+    usuario: Usuario = Depends(requerir_roles("cliente"))
+):
+    pedido = db.query(Pedido).filter(Pedido.id == pedido_id).first()
+    if pedido is None:
+        raise HTTPException(status_code=404, detail="Pedido no encontrado")
+    if pedido.usuario_id != usuario.id:
+        raise HTTPException(status_code=403, detail="No puedes cancelar pedidos de otros usuarios")
+    if pedido.estado != "pendiente":
+        raise HTTPException(status_code=400, detail="Solo puedes cancelar pedidos pendientes")
+    pedido.estado = "rechazado"
+    db.commit()
+    db.refresh(pedido)
+    return {"mensaje": "Pedido cancelado correctamente", "pedido": pedido}

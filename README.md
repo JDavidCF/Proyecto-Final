@@ -1,19 +1,21 @@
-# 📦 Sistema de Inventario
+# 📦 StockNova — Sistema de Gestión de Inventario
 
 <div align="center">
 
-<!-- Aquí puedes colocar el banner o GIF del proyecto -->
-
+<!-- Banner principal del proyecto -->
 <img src="https://i.pinimg.com/1200x/d1/f2/55/d1f25502864c59ebb01e98e044c86a60.jpg" width="40%">
 
-### 🗄️ Sistema de gestión y control de inventario
+### 🗄️ Gestión, administración y control inteligente de inventario
 
-**Organizando • Administrando • Optimizando**
+*Organizando • Administrando • Optimizando*
 
 [![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Frontend-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-4169E1?logo=postgresql)](https://www.postgresql.org/)
 [![Supabase](https://img.shields.io/badge/Supabase-Database-3FCF8E?logo=supabase)](https://supabase.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Styles-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
 
 </div>
 
@@ -21,141 +23,282 @@
 
 ## 📋 Sobre el proyecto
 
-**Sistema de Inventario** es un proyecto desarrollado como parte de la formación Técnico en Programación de Software del SENA.
+*StockNova* es una aplicación web de gestión y control de inventario desarrollada como proyecto final del programa Técnico en Programación de Software.
 
-Su propósito es desarrollar una aplicación que permita gestionar y controlar el inventario de productos, facilitando su administración mediante una API conectada a una base de datos.
+Su propósito es facilitar la administración de inventarios mediante una plataforma que centraliza la gestión de productos, usuarios, ventas, pedidos y movimientos de inventario, proporcionando información organizada y herramientas para mejorar el control de las operaciones.
 
-El proyecto se desarrolla utilizando Python y FastAPI para el backend, PostgreSQL como sistema de gestión de bases de datos y Supabase como servicio de alojamiento de la base de datos.
+La aplicación cuenta con una arquitectura dividida en dos partes principales:
 
-## 🎯 Objetivos
+- *Backend:* API REST desarrollada con Python y FastAPI, encargada de la lógica del sistema, autenticación, permisos y comunicación con la base de datos.
+- *Frontend:* Interfaz web desarrollada con React y TypeScript, diseñada para ofrecer una experiencia moderna, intuitiva y adaptable.
 
-- Gestionar los productos registrados en el inventario.
-- Consultar y organizar productos por categorías.
-- Administrar la información mediante operaciones CRUD.
-- Implementar autenticación y gestión de usuarios.
-- Mantener la información almacenada en una base de datos.
-- Desarrollar una aplicación organizada y escalable.
+La información se almacena en PostgreSQL mediante Supabase, mientras que SQLAlchemy y Alembic permiten gestionar los modelos y las migraciones de la base de datos.
+
+## 🎯 Objetivos del proyecto
+
+- Centralizar la administración de productos y existencias.
+- Facilitar el registro y seguimiento de ventas.
+- Gestionar pedidos y sus respectivos estados.
+- Controlar las entradas y ajustes del inventario.
+- Implementar autenticación segura y permisos según el rol del usuario.
+- Presentar estadísticas e información relevante para la toma de decisiones.
+- Incorporar herramientas inteligentes de asistencia mediante inteligencia artificial.
+- Desarrollar una plataforma organizada, escalable y de fácil utilización.
+
+## ✨ Funcionalidades principales
+
+| Módulo | Descripción |
+|---|---|
+| 📊 Dashboard | Resumen general de las operaciones del inventario. |
+| 📦 Productos | Registro, consulta, actualización y eliminación de productos. |
+| 👥 Usuarios | Administración de usuarios y asignación de roles. |
+| 🛒 Ventas | Registro de ventas y actualización automática de existencias. |
+| 📋 Pedidos | Gestión y seguimiento de pedidos. |
+| 🔄 Movimientos | Control de entradas y ajustes de inventario. |
+| 📈 Estadísticas | Visualización de indicadores, ventas y productos más vendidos. |
+| 🤖 Asistente IA | Asistente integrado para orientar al usuario sobre el funcionamiento de StockNova. |
+
+### 🔐 Seguridad y permisos
+
+El sistema incorpora autenticación mediante JWT y protección de contraseñas mediante Bcrypt.
+
+Cuenta con tres roles principales:
+
+- *Administrador:* acceso a las funciones administrativas y gestión del sistema.
+- *Empleado:* acceso a las operaciones de inventario y gestión permitidas.
+- *Cliente:* consulta de productos y gestión de pedidos.
+
+Los permisos se validan desde el backend para proteger las operaciones y restringir el acceso según el rol correspondiente.
+
+### 🎨 Interfaz y experiencia de usuario
+
+El frontend incorpora diferentes elementos para mejorar la interacción con la plataforma:
+
+- Diseño adaptable y moderno.
+- Modo claro y oscuro.
+- Componentes y animaciones interactivas.
+- Gráficas para la visualización de estadísticas.
+- Controles de accesibilidad.
+- Selector de idioma.
+- Asistente integrado.
+- Dictado por voz cuando el navegador lo permite.
 
 ## 🛠️ Tecnologías utilizadas
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=python,fastapi,postgresql,git,github,vscode" />
+<img src="https://skillicons.dev/icons?i=python,fastapi,react,typescript,tailwind,postgres,supabase,vite,git,github,vscode" />
 
 </div>
 
+### Backend
+
 | Tecnología | Utilización |
 |---|---|
-| Python | Lenguaje de programación |
-| FastAPI | Desarrollo de la API |
-| Pydantic | Validación de datos |
-| SQLAlchemy | Conexión y gestión de la base de datos |
-| PostgreSQL | Sistema de base de datos |
-| Supabase | Alojamiento de la base de datos |
-| PyJWT | Autenticación mediante tokens |
-| Git y GitHub | Control de versiones y trabajo colaborativo |
+| Python | Lenguaje principal del backend. |
+| FastAPI | Desarrollo de la API REST. |
+| Pydantic | Validación y estructuración de datos. |
+| SQLAlchemy | ORM y gestión de la base de datos. |
+| PostgreSQL | Sistema de gestión de bases de datos. |
+| Supabase | Servicio de alojamiento de PostgreSQL. |
+| Alembic | Control de migraciones de la base de datos. |
+| PyJWT | Autenticación mediante tokens JWT. |
+| Bcrypt | Protección de contraseñas. |
+| Gemini API | Servicio de inteligencia artificial del asistente. |
 
-## 📂 Estructura del proyecto
+### Frontend
 
-```text
-Proyecto-Final/
-│
-├── app/
-│   ├── api/
-│   │   └── routers/
-│   │
-│   ├── core/
-│   │
-│   ├── models/
-│   │
-│   ├── schemas/
-│   │
-│   ├── database/
-│   │
-│   └── main.py
-│
-├── crear_tablas.py
-├── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
-```
+| Tecnología | Utilización |
+|---|---|
+| React | Construcción de interfaces y componentes. |
+| TypeScript | Desarrollo con tipado estático. |
+| Tailwind CSS | Diseño y estilos de la aplicación. |
+| Vite | Herramienta de desarrollo y compilación. |
+| Axios | Comunicación con la API REST. |
+| React Router | Navegación entre páginas. |
+| Recharts | Visualización de estadísticas y gráficas. |
+| GSAP | Animaciones e interacciones visuales. |
+| Motion | Animaciones de componentes e interfaz. |
+| Lucide React | Iconografía de la aplicación. |
+
+### Herramientas adicionales
+
+- Git y GitHub: control de versiones y trabajo colaborativo.
+- Visual Studio Code: entorno de desarrollo.
+- Postman / Swagger UI: pruebas y documentación de la API.
+- pytest: ejecución de pruebas automatizadas.
 
 ## ⚙️ Instalación y configuración
 
 ### 1. Clonar el repositorio
 
-```bash
+bash
 git clone https://github.com/JDavidCF/Proyecto-Final.git
-```
+
 
 Entrar a la carpeta:
 
-```bash
+bash
 cd Proyecto-Final
-```
 
-### 2. Crear el entorno virtual
 
-```bash
+### 2. Configurar el backend
+
+Crear un entorno virtual:
+
+bash
 python -m venv venv
-```
 
-Activar el entorno virtual en Windows:
 
-```bash
+Activarlo en Windows:
+
+powershell
 venv\Scripts\activate
-```
 
-### 3. Instalar dependencias
 
-```bash
+Instalar las dependencias:
+
+bash
 pip install -r requirements.txt
-```
 
-### 4. Configurar variables de entorno
 
-Crear un archivo `.env` en la raíz del proyecto, tomando como referencia el archivo `.env.example`.
+### 3. Configurar las variables de entorno del backend
 
-Configurar las credenciales correspondientes de Supabase y la clave secreta para los tokens JWT.
+Crear un archivo .env en la raíz del proyecto, tomando como referencia .env.example.
 
-**Importante:** No compartir ni subir el archivo `.env` al repositorio, ya que contiene información privada.
+Configurar las siguientes variables:
 
-### 5. Ejecutar el proyecto
+dotenv
+# Base de datos Supabase
+user=
+password=
+host=
+port=5432
+dbname=
 
-Desde la carpeta principal:
+# Seguridad JWT
+JWT_SECRET_KEY=
 
-```bash
+# Asistente Gemini
+GEMINI_API_KEY=
+GEMINI_MODEL=gemini-3.5-flash-lite
+
+
+Completar los datos correspondientes con las credenciales de la base de datos y las claves necesarias.
+
+La clave de Gemini es necesaria para habilitar las respuestas del asistente. La variable GEMINI_MODEL es opcional.
+
+*Importante:* nunca compartir ni subir el archivo .env al repositorio, ya que contiene información privada.
+
+### 4. Ejecutar las migraciones
+
+Desde la raíz del proyecto, ejecutar:
+
+bash
+alembic upgrade head
+
+
+Este comando aplica las migraciones disponibles y actualiza la estructura de la base de datos.
+
+### 5. Iniciar el backend
+
+Ejecutar:
+
+bash
 uvicorn app.main:app --reload
-```
+
 
 La API estará disponible en:
 
 http://127.0.0.1:8000
 
+### 6. Configurar el frontend
+
+Abrir una segunda terminal y entrar en la carpeta:
+
+bash
+cd frontend
+
+
+Instalar las dependencias:
+
+bash
+npm install
+
+
+Crear un archivo .env tomando como referencia frontend/.env.example.
+
+Configurar la dirección del backend:
+
+dotenv
+VITE_API_BASE_URL=http://127.0.0.1:8000
+
+
+### 7. Iniciar el frontend
+
+Ejecutar:
+
+bash
+npm run dev
+
+
+Vite mostrará la dirección local de la aplicación. Normalmente estará disponible en:
+
+http://localhost:5173
+
+*Nota:* el backend y el frontend deben estar ejecutándose simultáneamente para que la aplicación funcione correctamente.
+
+## 🧪 Pruebas y compilación
+
+### Backend
+
+Desde la raíz del proyecto:
+
+bash
+pytest
+
+
+### Frontend
+
+Desde la carpeta frontend/, comprobar los tipos de TypeScript:
+
+bash
+npm run lint
+
+
+Generar la versión de producción:
+
+bash
+npm run build
+
+
 ## 📖 Documentación de la API
 
-FastAPI proporciona documentación interactiva mediante Swagger UI.
+FastAPI proporciona documentación interactiva mediante Swagger UI y ReDoc.
 
-Una vez iniciado el servidor, puedes acceder a:
+Una vez iniciado el backend, puedes acceder a:
 
-- **Swagger UI:** http://127.0.0.1:8000/docs
-- **ReDoc:** http://127.0.0.1:8000/redoc
+- *Swagger UI:* http://127.0.0.1:8000/docs
+- *ReDoc:* http://127.0.0.1:8000/redoc
 
-Desde estas interfaces es posible consultar los endpoints disponibles, revisar los modelos de datos y probar las peticiones de la API.
+Estas herramientas permiten consultar los endpoints disponibles, revisar los modelos de datos y realizar pruebas directamente sobre la API.
 
 ## 🌿 Trabajo colaborativo
 
-El desarrollo del proyecto se realiza mediante Git y GitHub, utilizando diferentes ramas para organizar el trabajo de los integrantes.
+El desarrollo del proyecto se organiza mediante Git y GitHub, utilizando ramas para distribuir el trabajo y Pull Requests para integrar los cambios.
 
-Repositorio: [JDavidCF/Proyecto-Final](https://github.com/JDavidCF/Proyecto-Final)
+*Repositorio oficial:*
+
+[JDavidCF/Proyecto-Final](https://github.com/JDavidCF/Proyecto-Final)
 
 ## 👨‍💻 Desarrollado por
 
-Proyecto académico realizado por aprendices del programa **Técnico en Programación de Software – SENA**.
+Proyecto académico realizado por aprendices del programa *Técnico en Programación de Software – SENA*.
+
+*StockNova — Organizando, Administrando y Optimizando.*
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=100&section=footer"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=120&section=footer"/>
 
 </div>

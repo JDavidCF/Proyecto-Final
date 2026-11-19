@@ -1,0 +1,46 @@
+.starfield {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  --star-low: 0.14;
+  --star-high: 0.88;
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: #f7fbff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.75), 0 0 13px rgba(0, 217, 255, 0.55);
+  animation: lower-star-twinkle ease-in-out infinite;
+}
+
+@keyframes lower-star-twinkle {
+  0%,
+  100% {
+    opacity: var(--star-low);
+    transform: scale(0.65);
+  }
+
+  50% {
+    opacity: var(--star-high);
+    transform: scale(1.8);
+  }
+}
+
+html[data-theme='light'] .star {
+  --star-low: 0.1;
+  --star-high: 0.52;
+  background: #3472bd;
+  box-shadow: 0 0 6px rgba(23, 107, 255, 0.48), 0 0 12px rgba(0, 153, 204, 0.32);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star {
+    animation: none;
+    opacity: 0.45;
+    transform: none;
+  }
+}
