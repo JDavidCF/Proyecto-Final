@@ -12,36 +12,8 @@ from app.api.routers import (
 )
 
 app = FastAPI(
-    title="StockNova API",
-    description="""
-# StockNova - Sistema de Gestión de Inventario
-
-API REST desarrollada para administrar y controlar
-las operaciones de inventario de manera eficiente.
-
-## Funcionalidades principales
-
-- **Productos:** gestión y administración del catálogo.
-- **Usuarios:** registro, autenticación y gestión de roles.
-- **Ventas:** registro y consulta de operaciones de venta.
-- **Movimientos:** control de entradas y ajustes de inventario.
-- **Pedidos:** creación y gestión de pedidos.
-- **Estadísticas:** consultas y análisis de información.
-- **Asistente IA:** asistencia inteligente integrada al sistema.
-
-## Seguridad
-
-La API implementa autenticación mediante JWT,
-encriptación de contraseñas y control de acceso
-basado en roles (administrador, empleado y cliente).
-
-## Tecnologías
-
-FastAPI, Python, SQLAlchemy y PostgreSQL.
-    """,
-    version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
+    title="Sistema de Inventario",
+    description=":)"
 )
 
 app.add_middleware(
@@ -51,6 +23,7 @@ app.add_middleware(
         "http://127.0.0.1:5173",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
+        "https://proyecto-final-jdavidcf.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -68,8 +41,4 @@ app.include_router(asistente.router)
 
 @app.get("/")
 def inicio():
-    return {
-        "mensaje": "Bienvenido a StockNova API",
-        "version": "1.0.0",
-        "documentacion": "/docs"
-    }
+    return {"mensaje": "Sistema de Inventario"}
