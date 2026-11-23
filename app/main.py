@@ -12,8 +12,36 @@ from app.api.routers import (
 )
 
 app = FastAPI(
-    title="Sistema de Inventario",
-    description=":)"
+    title="StockNova API",
+    description="""
+# StockNova - Sistema de Gestión de Inventario
+
+API REST desarrollada para administrar y controlar
+las operaciones de inventario de manera eficiente.
+
+## Funcionalidades principales
+
+- *Productos:* gestión y administración del catálogo.
+- *Usuarios:* registro, autenticación y gestión de roles.
+- *Ventas:* registro y consulta de operaciones de venta.
+- *Movimientos:* control de entradas y ajustes de inventario.
+- *Pedidos:* creación y gestión de pedidos.
+- *Estadísticas:* consultas y análisis de información.
+- *Asistente IA:* asistencia inteligente integrada al sistema.
+
+## Seguridad
+
+La API implementa autenticación mediante JWT,
+encriptación de contraseñas y control de acceso
+basado en roles (administrador, empleado y cliente).
+
+## Tecnologías
+
+FastAPI, Python, SQLAlchemy y PostgreSQL.
+    """,
+    version="1.0.0",
+    docs_url="/docs",
+    redoc_url="/redoc",
 )
 
 app.add_middleware(
